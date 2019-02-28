@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link
+            href="https://fonts.googleapis.com/css?family=Nanum+Gothic"
+            rel="stylesheet">
+        <link
+            href="https://fonts.googleapis.com/css?family=Staatliches|ZCOOL+KuaiLe"
+            rel="stylesheet">
+        <link 
+            rel="stylesheet" 
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+            crossorigin="anonymous">
+        
+        <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+        <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+        <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+        <script
+            src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <link rel="shortcut icon" href="file://E:/study/BU 2/CS671 SE/acadella1.jpg">
+        <title>baseblue</title>
+        <!--
+            <div class="container">
+        <div class="row" style="background-color: rgb(5, 2, 2);height: 100px"></div>
+        <div class="row" style="background-color: rgb(41, 41, 95); height:100px "></div>
+        <div class="row" style="background-color: rgb(45, 38, 153);height: 100px"></div>
+        <div class="row" style="background-color: rgb(157, 196, 253);height: 100px"></div>
+        <div class="row" style="background-color: rgb(186, 209, 252);height: 100px"></div>
+        <div class="row" style="background-color: rgb(107, 79, 17);height: 100px"></div>
+        <div class="row" style="background-color: rgb(243, 211, 30);height: 100px"></div>
+        <div class="row" style="background-color: rgb(247, 244, 74);height: 100px"></div>
+        <div class="row" style="background-color: rgb(247, 245, 153);height: 100px"></div>
+    </div>
+        -->
+        <style>
+            body {
+                background-color: white;
+                font-family: 'Nanum Gothic', sans-serif;
+            }
+            .headbar {
+                height: 70px;
+                background-color: rgb(41, 41, 95);
+            }
+            ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+            li {
+                display: block;
+                float: right;
+            }
+            li a {
+                display: block;
+                color: rgb(136, 183, 253);
+                text-align: center;
+                padding: 15px;
+                font-size: 15px;
+                margin-top:10px
+            }
+            li a:hover {
+                color: rgb(247, 245, 153);
+            }
+        </style>
+        <style type="text/css">
+            .subhead{
+                color:rgb(41, 41, 95);
+                border-bottom: 3px solid rgb(41, 41, 95);
+                margin-left: 20px;
+                margin-top: 20px;
+                background-color:rgb(149, 191, 253);
+            }
+            .textcontent{
+                margin-left:10px;
+                margin-top:20px;
+                color:rgb(41, 41, 95)
+            }
+        </style>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-sm headbar">
+            <div class="col-md-1" style="background-color: white; text-align: center">
+                <img src="acadella.jpg" alt="symbol" heigth="80px" width="80px" style="margin-top:10px">
+            </div>
+            <div class="col-md-3">
+                <h1 style="margin-left: 10px; margin-top:10px; font-family: 'Staatliches', cursive; font-size:45px">
+                    <a href="{% url 'home' %}" style="font-family: 'Staatliches', cursive; font-size:45px; color: rgb(243, 211, 30);"> - ACADELLA -</a>
+                </h1>
+            </div>
+           <div class="col-md-4"></div>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}" > <b> Logout</b>  </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'edit_profile' %}" > <b>Edit profile </b>  </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'change_password' %}" > <b>Change Password</b> </a>
+                    </li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="{% url 'home' %}" style="font-size:25px;color:rgb(243, 211, 30); margin-top:0">{{ user.username }}</a>
+                    </li>
+                    {% endif %}
+                      
+                </ul>
+            </div>
+          </nav>
+          <br/>
+          <div class="container-fluid">
+                {% if messages %}
+                  {% for message in messages %}
+                    <div class="alert alert-warning alert-dismissable" role="alert">
+                      <button class="close" data-dismiss="alert">
+                              <small><sup>x</sup></small>
+                          </button>
+                      {{ message }}
+                    </div>
+                  {% endfor %}
+                {% endif %}
+          
+          
+              {% block content %}
+              {% endblock %}
+              </div>
+              <script>
+                $("#change").click(()=>{
+                    str = "save"
+                    if ($("#change").val() == "change"){
+                        $("#change").val(str);
+                        // $("#Issue").attr("contenteditable", "true");
+                        obj_text = $("#Issue").find("input:text");   
+                        if(!obj_text.length)   // 如果没有文本框，则添加文本框使之可以编辑
+                            $("#Issue").html("<input type='text' value='"+$("#Issue").text()+"'>");
+                        else   // 如果已经存在文本框，则将其显示为文本框修改的值
+                            $("#Issue").html(obj_text.val());
+                    }else{
+                        $("#change").val("change");
+                        $("#Issue1").attr("contenteditable", "false");
+                    } 
+                });
+              </script>
+              <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+              <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+{% extends 'authenticate/base.html' %}
+{% block content %}
+<h1> This is the home page </h1>
+
+{% if user.is_authenticated %}
+	<p>Name:{{ user.first_name }} {{ user.last_name }}</p>
+	<p>Username:{{ user.username }}</p>
+	<p>Email:{{ user.email }}</p>
+	<a href="{% url 'program' %}">
+		<button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
+			<b>program</b>
+		</button>
+	</a>
+		
+
+{% else %}
+	<div style="float:right; width: 503px; border-left: 3px rgb(41, 41, 95) solid">
+		<h1 class="text-center" style="color:rgb(41, 41, 95)">Login</h1>
+		<form method="POST" style="margin:10px 50px; margin-top:20px">
+			{% csrf_token %}
+			<div class="input-group">
+				<span class="input-group-addon" style="width:100px; background-color:rgb(157, 196, 253);color:rgb(41, 41, 95); text-align: center;padding-top: 7px"> <b>Name</b> </span>
+				<input type="text" class="form-control" placeholder="Enter username" name="username" style="width:300px; border:1px rgb(41, 41, 95) solid">
+			</div>
+			<br>
+			<div class="input-group">
+			    <span class="input-group-addon" style="width:100px; background-color:rgb(157, 196, 253);color:rgb(41, 41, 95); text-align: center;padding-top: 7px"> <b>Password</b> </span>
+				<input type="text" class="form-control" placeholder="Enter password" name="password" style="width:300px; border:1px rgb(41, 41, 95) solid">
+			</div>
+			<br>
+			<center>
+				<button type="submit" class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253)"> <b>Login</b> </button>
+			</center>	
+				
+		</form>
+		<center>
+			<a href="{% url 'register' %}">
+				<button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
+					<b>Sign Up</b>
+				</button>	
+			</a>
+		</center>
+		
+		
+	</div>
+
+{% endif %}
+
+{% endblock %}
