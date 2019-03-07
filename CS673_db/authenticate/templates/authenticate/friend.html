@@ -1,0 +1,32 @@
+User list
+
+{% for user in Users %}
+	<h3>
+
+		{{ user.username }} 
+
+		{% if not user in friends %}
+
+
+		<a href="{% url 'change_friends' operation='add' pk=user.pk %}"><button type="button" class="btn btn-secondary">Add Friend</button></a>
+
+		{% endif %}
+
+
+	</h3>
+
+{% endfor %}
+
+Friend List
+
+{% for friend in friends %}
+	<h3>
+
+		{{ friend.username }} 
+
+		<a href="{% url 'change_friends' operation='remove' pk=friend.pk %}"><button type="button" class="btn btn-secondary">Remove Friend</button></a>
+
+	</h3>
+
+{% endfor %}
+

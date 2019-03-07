@@ -1,0 +1,103 @@
+{% extends 'authenticate/base.html' %}
+
+{% block content %}
+
+<div class="container" style=" border:2px solid rgb(41, 41, 95)">
+        <h1
+                id="Pname" class="subhead"
+                style="font-family: 'Staatliches', cursive; margin:5px 20px">
+                {{ program.programname }}
+        </h1>
+        <p id="Pdes" class="textcontent" style="padding:0 50px">
+                {{ program.programdescription }}
+        </p>
+        <div class="row">
+        <div
+            class="col-lg-8"
+            style=" margin-left:10px;margin-top:10px">
+           
+            <div class="row" style="background-color: rgb(186, 209, 252); margin-top: 20px">
+                <h3 class="subhead" style="width: 500px">issue</h3>
+                <table class="textcontent"
+                    style="width:100%">
+                    <tr>
+                        <th></th>
+                        <th>start date</th>
+                        <th>status</th>
+                        <th>members</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <u id="Iname"> {{ issue.issuename }}</u>
+                        </td>
+                        <td id="Isd">{{ issue.issuestartdate }}</td>
+                        <td id="Istatus">{{ issue.issuestatus }}</td>
+                        <td id="Uname">{{ issue.issuemember }}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="row">
+            <a href="{% url 'issue' %}">
+                <button
+                    id="ChangeP"
+                    class="btn btn-secondary"
+                    onclick=""
+                    style="background-color: rgb(41, 41, 95);width: 200px;margin-top: 20px;margin-left:250px; height:80px;color:rgb(157, 196, 253);font-size:20px">
+                    manage issue
+                </button>
+            </a>
+            </div>
+        </div>
+        <div
+            class="col-lg-3"
+            style="margin-left:10px;margin-top:10px ">
+            <div class="row" style="background-color: rgb(186, 209, 252);margin-top: 20px">
+                <h3 class="subhead">
+                Group members
+            </h3>
+            <table class="textcontent"
+                style="width:100%">
+                <tr>
+                    <th>member name</th>
+                    <th>position</th>
+                </tr>
+                <tr>
+                    <td>
+                        <u id="Uname">{{ program.programuser }}</u>
+                    </td>
+                    <td id="Uposition">front end</td>
+                    <td id="UPIremove"><a href="#">remove</a></td>
+                </tr>
+                <tr>
+                    <td id="Uname">
+                        <a href="#" style="color:rgb(82, 31, 31)">John</a>
+                    </td>
+                    <td id="Uposition">backend</td>
+                    <td id="UPIremove">remove</td>
+                </tr>
+            </table>
+
+            </div>
+            <div class="row">
+            <button
+                    class="btn"
+                    onclick=""
+                    style="background-color: rgb(41, 41, 95);width: 200px;margin-top: 20px; height:80px;color:rgb(157, 196, 253);font-size:20px">
+                            add new member
+            </button>
+                
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
