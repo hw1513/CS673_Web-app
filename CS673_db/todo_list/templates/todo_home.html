@@ -27,14 +27,14 @@
 			{% if things.completed %}
 				<tr>
 					<td class = "striker"> <a href="{% url 'edit' things.id %}">{{ things.item }}</a></td>
-					<td class = "striker"> <a href="{% url 'edit' things.id %}">{{ things.belongs }}</a></td>
+					<td class = "striker"> <a>{{ things.belongs }}</a></td>
 					<td> <center> <a href="{% url 'uncross' things.id %}"> Compeleted </a></center></td>
 					<td> <center> <a href="{% url 'delete' things.id %}"> Delete </a> </center></td>
 				</tr>
 			{% else %}
 				<tr>
 					<td> <a href="{% url 'edit' things.id %}">{{ things.item }}</a> </td>
-					<td class = "striker"> <a href="{% url 'edit' things.id %}">{{ things.belongs }}</a></td>
+					<td class = "striker"> <a>{{ things.belongs }}</a></td>
 					<td> <center> <a href="{% url 'cross_off' things.id %}"> Not completed </a>  </center></td>
 					<td> <center> <a href="{% url 'delete' things.id %}"> Delete </a> </center></td>
 				</tr>

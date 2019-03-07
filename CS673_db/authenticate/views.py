@@ -11,7 +11,7 @@ from .models import Friend
 	#return render(request, 'authenticate/home.html', {})
 
 def program(request):
-	return render(request, 'authenticate/program.html',{})
+	return render(request, 'programs/programs.html',{})
 
 def issue(request):
 	return render(request, 'authenticate/issue.html',{})

@@ -8,3 +8,4 @@ class Programs(models.Model):
 	project_members=models.ManyToManyField(User)
 	def __str__(self):
 		return self.project_name
+
