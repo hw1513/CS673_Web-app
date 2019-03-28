@@ -1,0 +1,4 @@
+django
+channels
+pypiwin32
+mysqlclient
