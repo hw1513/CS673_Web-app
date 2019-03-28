@@ -23,6 +23,7 @@ urlpatterns = [
     path('', include('authenticate.urls')),
     path('todo/', include('todo_list.urls')),
     path('programs/', include('programs.urls')),
+    path('chat/', include('chat.urls')),
     
 ]
 
