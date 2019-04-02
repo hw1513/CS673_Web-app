@@ -9,6 +9,15 @@
 nosetests.xml
 coverage.xml
 
+# Virtual Env
+venv/
+
+# Flask
+flask_session/
+
 # Django stuff:
 *.log
 *.pot
+
+# IDE
+.idea
