@@ -12,6 +12,11 @@ coverage.xml
 # Virtual Env
 venv/
 
+# Python Virtual Environment
+bin/
+lib/
+pyvenv.cfg
+
 # Flask
 flask_session/
 
