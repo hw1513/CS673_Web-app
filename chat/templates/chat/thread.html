@@ -16,7 +16,7 @@
 
 
 
-<li><br>{{ chat.message }} via {{ chat.user }}<br></li><hr>
+<li>{{ chat.message }} via {{ chat.user }}</li>
 
 
 
@@ -64,7 +64,7 @@ var socket = new ReconnectingWebSocket(endpoint)
 socket.onmessage = function(e){
 	console.log("message", e)
 	var chatDataMsg = JSON.parse(e.data)
-	chatHolder.append("<li><br>"+ chatDataMsg.message + " via " + chatDataMsg.username + "</li><hr>")
+	chatHolder.append("<li>"+ chatDataMsg.message + " via " + chatDataMsg.username + "</li>")
 }
 socket.onopen = function(e){
 	console.log("open", e)
