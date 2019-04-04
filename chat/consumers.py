@@ -32,7 +32,7 @@ class ChatConsumer(AsyncConsumer):
         front_text = event.get('text', None)
         if front_text is not None:
         	loaded_dict_data = json.loads(front_text)
-        	msg=loaded_dict_data.get('message') + "\n"
+        	msg=loaded_dict_data.get('message')
         	user = self.scope['user']
         	username = 'default'
         	if user.is_authenticated:
