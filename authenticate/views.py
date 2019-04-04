@@ -10,9 +10,6 @@ from .models import Friend
 #def home(request):
 	#return render(request, 'authenticate/home.html', {})
 
-def program(request):
-	return render(request, 'programs/programs.html',{})
-
 def issue(request):
 	return render(request, 'authenticate/issue.html',{})
 

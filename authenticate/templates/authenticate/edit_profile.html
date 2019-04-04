@@ -24,12 +24,16 @@
 		
 	{% endif %}
 
-		{{ form.as_ul }}
+
+    {{ form.as_ul }}
+
+		
 
     <p><small><a href="{% url 'change_password' %}">Click Here</a> To Change Your Password</small></p>
+    <input type="submit" value="Edit Profile" class="btn btn-secondary">
 
 
-	<input type="submit" value="Edit Profile" class="btn btn-secondary">
+	
 </form>
 
 
