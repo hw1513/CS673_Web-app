@@ -6,6 +6,10 @@
 
 <h3>Thread for {% if user != object.first %}{{ object.first }}{% else %}{{ object.second }}{% endif %}</h3>
 
+
+
+
+
 <ul id='chat-items'>
 
 {% for chat in object.chatmessage_set.all %}
@@ -60,7 +64,7 @@ var socket = new ReconnectingWebSocket(endpoint)
 socket.onmessage = function(e){
 	console.log("message", e)
 	var chatDataMsg = JSON.parse(e.data)
-	chatHolder.append("<li>"+ chatDataMsg.message + " via " + chatDataMsg.username + "</li>")
+	chatHolder.append("<li><br>"+ chatDataMsg.message + " via " + chatDataMsg.username + "<br></li>")
 }
 socket.onopen = function(e){
 	console.log("open", e)
