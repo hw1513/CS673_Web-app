@@ -1,10 +1,10 @@
-{% extends "authenticate/base.html" %}
+{% extends "chat/base.html" %}
 
 {% load static %}
 
 {% block content %}
 
-<h3>Thread for {% if user != object.first %}{{ object.first }}{% else %}{{ object.second }}{% endif %}</h3>
+<h3>Channel Connected With {% if user != object.first %}{{ object.first }}{% else %}{{ object.second }}{% endif %}</h3>
 
 <ul id='chat-items'>
 
