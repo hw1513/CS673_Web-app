@@ -1,19 +1,15 @@
+{% extends 'authenticate/base.html' %}
 {% block content %}
 
-{{program}}
-
-<h>{{program.start_date}}</h>
-
-<h>{{program.project_description}}</h>
-
-<h>{% for member in members %}
-			
-	{{member}}
-
-{% endfor %}
-
-</h>
+<ul class="list-group">
+  <li class="list-group-item"> Project Name :  {{program}}</li>
+  <li class="list-group-item"> Start Date   :  {{program.start_date}}</li>
+  <li class="list-group-item"> Description  :  {{program.project_description}}</li>
+  <li class="list-group-item"> Members      :
+  {% for member in members %}
+  	  {{member}}
+  {% endfor %}
+  </li>
+</ul>
 {% endblock %}
 
-
-<a href="url 'add_member' "><button type="button" class="btn btn-secondary">Add team members</button></a>
