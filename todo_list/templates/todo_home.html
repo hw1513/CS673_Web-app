@@ -45,17 +45,11 @@
 	{% endif %}
 
 
-
-
-	<form class="form-inline my-2 my-lg-0" method ="POST">
-		{% csrf_token %}
-		{{ form }}
-		<buttton class="btn btn-outline-secondary my-2 my-sm-0" type="submit"> Add to list </buttton>
-
-
-	</form>
-
-
+	<a href="{% url 'addnew' %}">
+				<button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
+					<b> New Item</b>
+				</button>	
+			</a>
 
 
 {% endblock %}
