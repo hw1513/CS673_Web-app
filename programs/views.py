@@ -1,20 +1,35 @@
-from django.shortcuts import render,HttpResponse, get_object_or_404, redirect
+from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from .models import Programs
 from .forms import ProgramForm
 from django.contrib import messages
 
+
 def detail(request, program_name):
-	program = get_object_or_404(Programs, project_name=program_name)
-	members = list(program.project_members.all())
-	return render(request, 'programs/detail.html', {'program':program, 'members':members})
+    """
+    This function gets and renders all project members within the program and renders them in the detail template
+
+    :param request:
+    :param program_name:
+    :return:
+    """
+    program = get_object_or_404(Programs, project_name=program_name)
+    members = list(program.project_members.all())
+    return render(request, 'programs/detail.html', {'program': program, 'members': members})
+
 
 def program(request):
-	
+	"""
+	This function gets all programs and renders them into the programs template
 
-		all_programs = list(Programs.objects.all())
-		
+	:param request:
+	:return:
+	"""
 
-		return render(request, 'programs/programs.html', {'all_programs' : all_programs })
+    all_programs = list(Programs.objects.all())
+
+    return render(request, 'programs/programs.html', {'all_programs': all_programs})
+
+
 """
 def todo_home(request):
 
@@ -36,38 +51,57 @@ def todo_home(request):
 		return render(request, 'todo_home.html', {'all_items' : all_items , 'form' : form })
 """
 
+
 def add_member(request, program_name):
-	program = get_object_or_404(Programs, project_name=program_name)
-	if request.method == 'POST':
+	"""
+	This function adds a member to the program with a POST API call and on success renders the additional member
+	into the program
 
-		form = ProgramForm(request.POST or None)
+	:param request:
+	:param program_name:
+	:return:
+	"""
+    program = get_object_or_404(Programs, project_name=program_name)
+    if request.method == 'POST':
 
-		if form.is_valid():
-			form.save()
-			all_items=Program.objects.all()
-			messages.success(request, ('New program has been cretated'))
-			return render(request, 'programs/add_member.html', {'all_items' : all_items , 'form' : form})
+        form = ProgramForm(request.POST or None)
 
-	else:
+        if form.is_valid():
+            form.save()
+            all_items = Program.objects.all()
+            messages.success(request, ('New program has been created'))
+            return render(request, 'programs/add_member.html', {'all_items': all_items, 'form': form})
 
-		all_items = Programs.objects.all
-		form = ProgramForm()
+    else:
 
-		return render(request, 'programs/add_member.html', {'all_items' : all_items , 'form' : form })
+        all_items = Programs.objects.all
+        form = ProgramForm()
+
+        return render(request, 'programs/add_member.html', {'all_items': all_items, 'form': form})
+
+
 
 def addprogram(request):
-	if request.method == 'POST':
-		form = ProgramForm(request.POST)
-		if form.is_valid():
-			form.save()
-			messages.success(request, ('You Have Added New Program'))
-			return redirect('programhome')
-	else:
-		form = ProgramForm(instance=request.user)
+	"""
+	This function adds a new program using the form with a POST request API call. If the call fails the user is prompted
+	again and the template is rendered.
 
-	context = {'form': form}
+	:param request:
+	:return:
+	"""
 
-	return render(request, 'programs/addprogram.html', context)
+    if request.method == 'POST':
+        form = ProgramForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, ('You Have Added New Program'))
+            return redirect('programhome')
+    else:
+        form = ProgramForm(instance=request.user)
+
+    context = {'form': form}
+    return render(request, 'programs/addprogram.html', context)
+
 	
 def delete_program(request,program_name):
     #program = get_object_or_404(Programs, project_name=program_name)
@@ -76,4 +110,5 @@ def delete_program(request,program_name):
     all_programs = list(Programs.objects.all())
     messages.success(request, ('You Have Deleted Program'))
     return render(request, 'programs/programs.html', {'all_programs' : all_programs })
+
 
