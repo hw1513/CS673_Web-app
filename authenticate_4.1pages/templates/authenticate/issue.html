@@ -1,0 +1,40 @@
+{% extends 'authenticate/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1
+        id="Pname" class="subhead"
+        style="font-family: 'Staatliches', cursive; margin:5px 20px">
+        {{ program.programname }} - Issue
+    </h1>
+    <div class="row">
+            <table class="textcontent"
+            style="width:100%">
+            <tr>
+                <th>issue name</th>
+                <th>issue member</th>
+                <th>status</th>
+                <th>description</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr>
+                <td id="Iname">
+                    <p id="Issue">issue.issuename</p>
+                </td>
+                <td id="Issue"> <p id=""> {{ user.last_name }}</p> </td>
+                <td id="Istatus"> <p id="Issue">  issue.issuestatus }} </p></td>
+                <td id="Uname"><p id="Issue">{{ issue.description }}</p></td>
+                <td><input type="button" value="change" id="change"></td>
+                <td><input type="button" value="remove"></td>
+            </tr>
+        </table>    
+    </div>
+
+</div>
+
+
+
+
+{% endblock %}
