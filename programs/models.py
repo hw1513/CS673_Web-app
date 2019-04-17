@@ -6,7 +6,7 @@ class Programs(models.Model):
 	start_date=models.DateField('date started')
 	project_description=models.CharField(max_length=200)
 	project_members=models.ManyToManyField(User)
-	#project_member=models.ForeignKey(project_members,on_delete=models.CASCADE)
+
 	def __str__(self):
 		return self.project_name
 
