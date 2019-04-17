@@ -66,4 +66,14 @@ def addprogram(request):
 		form = ProgramForm(instance=request.user)
 
 	context = {'form': form}
+
 	return render(request, 'programs/addprogram.html', context)
+	
+def delete_program(request,program_name):
+    #program = get_object_or_404(Programs, project_name=program_name)
+    one_task=Programs.objects.get(project_name=program_name)
+    one_task.delete()
+    all_programs = list(Programs.objects.all())
+    messages.success(request, ('You Have Deleted Program'))
+    return render(request, 'programs/programs.html', {'all_programs' : all_programs })
+

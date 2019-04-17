@@ -39,9 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'authenticate',
     'programs',
+    'authenticate',
     'todo_list',
+    'issue1',
     
 ]
 
@@ -82,14 +83,13 @@ TEMPLATES = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test',
-        'USER': 'hw1513',
-        'PASSWORD': 'whqwfy206303',
+        'NAME': 'cs673',
+        'USER': 'zifu',
+        'PASSWORD': 'Sun654321@',
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators

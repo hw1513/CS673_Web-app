@@ -35,7 +35,7 @@
 				<tr>
 					<td> <a href="{% url 'edit' things.id %}">{{ things.item }}</a> </td>
 					<td class = "striker"> <a>{{ things.belongs }}</a></td>
-					<td> <center> <a href="{% url 'cross_off' things.id %}"> Not completed </a>  </center></td>
+					<td> <center> <a href="{% url 'cross_off' things.id %}"> Work in Progress </a>  </center></td>
 					<td> <center> <a href="{% url 'delete' things.id %}"> Delete </a> </center></td>
 				</tr>
 			{% endif %}

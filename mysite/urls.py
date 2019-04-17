@@ -24,6 +24,6 @@ urlpatterns = [
     path('todo/', include('todo_list.urls')),
     path('programs/', include('programs.urls')),
     path('messages/', include('chat.urls')),
-    
+    path('issue1/', include('issue1.urls')),
 ]
 

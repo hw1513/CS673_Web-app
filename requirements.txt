@@ -1,0 +1,5 @@
+channels==2.1.7
+django==2.1.7
+mysqlclient==1.4.2.post1
+django_heroku
+gunicorn
