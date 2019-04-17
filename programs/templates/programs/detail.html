@@ -8,8 +8,22 @@
   <li class="list-group-item"> Members      :
   {% for member in members %}
   	  {{member}}
+
+
   {% endfor %}
   </li>
 </ul>
+
+  <a href="{% url 'delete_program' program.project_name %}">
+                <button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
+                    <b> Delete Program</b>
+                </button>   
+            </a>
+
+
+  {% endfor %}
+  </li>
+</ul>
+
 {% endblock %}
 

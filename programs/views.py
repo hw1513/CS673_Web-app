@@ -79,8 +79,7 @@ def add_member(request, program_name):
 
         return render(request, 'programs/add_member.html', {'all_items': all_items, 'form': form})
 
-# TODO: This should be named add_program for snake case consistent naming conventions, this needs to be changed in the
-# TODO: Javascript and HTML as well as it's called in multiple places.
+
 
 def addprogram(request):
 	"""
@@ -102,3 +101,14 @@ def addprogram(request):
 
     context = {'form': form}
     return render(request, 'programs/addprogram.html', context)
+
+	
+def delete_program(request,program_name):
+    #program = get_object_or_404(Programs, project_name=program_name)
+    one_task=Programs.objects.get(project_name=program_name)
+    one_task.delete()
+    all_programs = list(Programs.objects.all())
+    messages.success(request, ('You Have Deleted Program'))
+    return render(request, 'programs/programs.html', {'all_programs' : all_programs })
+
+
