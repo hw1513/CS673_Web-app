@@ -1,19 +1,23 @@
+{% extends 'authenticate/base.html' %}
 {% block content %}
 
-{{program}}
+<ul class="list-group">
+  <li class="list-group-item"> Project Name :  {{program}}</li>
+  <li class="list-group-item"> Start Date   :  {{program.start_date}}</li>
+  <li class="list-group-item"> Description  :  {{program.project_description}}</li>
+  <li class="list-group-item"> Members      :
+  {% for member in members %}
+  	  {{member}}
 
-<h>{{program.start_date}}</h>
+  {% endfor %}
+  </li>
+</ul>
 
-<h>{{program.project_description}}</h>
+  <a href="{% url 'delete_program' program.project_name %}">
+                <button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
+                    <b> Delete Program</b>
+                </button>   
+            </a>
 
-<h>{% for member in members %}
-			
-	{{member}}
-
-{% endfor %}
-
-</h>
 {% endblock %}
 
-
-<a href="url 'add_member' "><button type="button" class="btn btn-secondary">Add team members</button></a>
