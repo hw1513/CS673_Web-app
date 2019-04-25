@@ -61,7 +61,7 @@ def edit(request, list_id):
 			return redirect('todo_home')
 
 	else:
-
+		print('error')
 		item = List.objects.get(pk=list_id)
 
 		return render(request, 'edit.html', {'item' : item})

@@ -1,29 +1,89 @@
 {% extends 'authenticate/base.html' %}
 {% block content %}
 
-<h1> This is the home page </h1>
-
 {% if user.is_authenticated %}
 	<p>Name:{{ user.first_name }} {{ user.last_name }}</p>
 	<p>Username:{{ user.username }}</p>
 	<p>Email:{{ user.email }}</p>
-	<a href="{% url 'programhome' %}">
-		<button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
-			<b>program</b>
-		</button>
-	</a>
-	<a href="{% url 'todo_home' %}">
-		<button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
-			<b>To-Do List</b>
-		</button>
-	</a>
-
-	<a href="{% url 'friend' %}">
-		<button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
-			<b>Friend</b>
-		</button>
-	</a>
+	
+<a href="{% url 'addprogram' %}">
+							<button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
+									<b> New Program</b>
+							</button>   
+					</a>
+<a href="{% url 'todo_home' %}">
+						<button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
+							<b>To-Do List</b>
+						</button>
+					</a>
+	<div class="row" >
+		<div class="col-lg-6" style=" margin-left:10px;margin-top:10px">
+				<h3
+				style="color:rgb(41, 41, 95) ;border-bottom: 3px solid rgb(41, 41, 95); margin-left: 20px; margin-top: 20px;background-color: rgb(120, 151, 253)">
+			  Programs
+			</h3>
+				{% if all_programs %}
+				<table style="width:100%; margin-left:10px; margin-top:20px;color:rgb(41, 41, 95);">
+			
+						{% for program in all_programs %}
+								
+										<tr>
+												<td> <a href="{% url 'detail' program.project_name %}">{{ program.project_name }}</a></td>
+												<td class = ""> <a>{{ program.start_date }}</a></td>
+												<td> <center>  {{program.project_description}}  </center></td>
+												
+										</tr>
+								
+			
+						{% endfor %}
+				</table>
+				{% endif %}
+		</div>
+		<div class="col-lg-4" style="background-color: rgb(186, 209, 252);margin-top: 20px;margin-left:10px;">
+			<h3 class="subhead"> Friend List</h3>
+			<table class="textcontent"
+			style="width:100%">
+			<tr>
+				<th>member name</th>
+				
+			</tr>
+			{% for friend in friends %}
+			<tr>
 		
+				<td>{{ friend.username }}</td>
+				<td><a href="{% url 'change_friends' operation='remove' pk=friend.pk %}">
+				   <button type="button" class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253)">Remove Friend</button>
+				</a></td> 
+				<td><a href="{% url 'start_chat'  username=friend.username %}">
+					<button type="button" class="btn btn-secondary" style="width:170px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253)">Start conversation</button>
+				</a></td>    
+			  </tr>
+		
+			{% endfor %}
+			</table>
+			<h3 class="subhead"> User List</h3>
+			<table class="textcontent"
+				style="width:100%">
+			<tr>
+				<th>member name</th>
+				
+			</tr>
+			{% for user in Users %}
+			<tr>
+				<td>{{ user.username }}</td>
+				<td>
+					{% if not user in friends %}
+						<a href="{% url 'change_friends' operation='add' pk=user.pk %}"><button type="button" class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253)">Add Friend</button></a>
+					{% endif %}
+		
+				</td>
+			</tr>
+		
+			{% endfor %}
+		</table>
+		</div>
+		
+	</div>
 
 {% else %}
 	<div style="float:right; width: 503px; border-left: 3px rgb(41, 41, 95) solid">

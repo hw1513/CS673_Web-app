@@ -1,28 +1,46 @@
-{% extends "chat/base.html" %}
+{% extends "authenticate/base.html" %}
 
 {% load static %}
 
 {% block content %}
 
-<h3>Channel Connected With {% if user != object.first %}{{ object.first }}{% else %}{{ object.second }}{% endif %}</h3>
+<div class="container">
+	<h3 class="subhead">Chat with
+		{% if user != object.first %}{{ object.first }}
+		{% else %}{{ object.second }}
+		{% endif %}
+	</h3>
+<div class="row" style=" margin-left: 30px; height:350px">
+	<div
+		class="col-md-8" id="roll" 
+		style="border-left: 3px rgb(41, 41, 95) solid; overflow-y:scroll; height: 300px; ">
+		<ul id='chat-items' style="text-align: left">
 
+			{% for chat in object.chatmessage_set.all %}
 
+				<li>
+					<font size="2">
+						<b>
+							{{ chat.user }}</b>
+						says:</font>
 
+					<br/>
+					{{ chat.message }}
+				</li>
+				<br/><br/>
+			{% endfor %}
 
-
-<ul id='chat-items'>
-
-{% for chat in object.chatmessage_set.all %}
-
-
-
-<li>{{ chat.message }} via {{ chat.user }}</li>
-
-
-
-{% endfor %}
-
-</ul>
+		</ul>
+	</div>
+	<div class="col-md-3" style="border-left:3px rgb(41, 41, 95) solid; height: 300px">
+		<table>
+			<th>
+				<p>members</p>
+			</th>
+			<td></td>
+		</table>
+	</div>
+</div>
 
 
 
@@ -31,11 +49,11 @@
 
 {{form.as_p }}
 
-<input type='submit' class='btn btn-primary'/>
+<input type='submit' class="btn btn-secondary" style="width:170px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253)">
 
 </form>
 
-
+</div>
 
 {% endblock %}
 

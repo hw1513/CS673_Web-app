@@ -13,25 +13,14 @@ from .models import Thread, ChatMessage
 
 
 class InboxView(LoginRequiredMixin, ListView):
-    """
-    This class creates an inbox view using the inbox template
-    """
 
     template_name = 'chat/inbox.html'
 
     def get_queryset(self):
-        """
-        This is a getter for the thread object
-
-        :return:
-        """
 
         return Thread.objects.by_user(self.request.user)
 
 class ThreadView(LoginRequiredMixin, FormMixin, DetailView):
-    """
-    This class defines the thread view
-    """
 
     template_name = 'chat/thread.html'
 
@@ -39,7 +28,7 @@ class ThreadView(LoginRequiredMixin, FormMixin, DetailView):
 
     success_url = './'
 
-    #TODO: I believe this method could be inheritied as it's repeated above
+
 
     def get_queryset(self):
 
@@ -48,12 +37,6 @@ class ThreadView(LoginRequiredMixin, FormMixin, DetailView):
 
 
     def get_object(self):
-        """
-        This method is a getter for the thread between two users to use
-        If this fails the web server will 404 Resource not found
-
-        :return:
-        """
 
         other_username  = self.kwargs.get("username")
 
@@ -68,15 +51,6 @@ class ThreadView(LoginRequiredMixin, FormMixin, DetailView):
 
 
     def get_context_data(self, **kwargs):
-        """
-        This method is a recursive function that gets the form details
-        and returns the content of the form
-
-        :param kwargs:
-        :return:
-        """
-
-        # TODO: I don't fully understand this method
 
         context = super().get_context_data(**kwargs)
 
@@ -87,15 +61,6 @@ class ThreadView(LoginRequiredMixin, FormMixin, DetailView):
 
 
     def post(self, request, *args, **kwargs):
-        """
-        This method checks if the user is authenticated and then calls the POST to get the form information.
-        After this it checks if the form is valid and then returns the form.
-
-        :param request:
-        :param args:
-        :param kwargs:
-        :return:
-        """
 
         if not request.user.is_authenticated:
 
@@ -116,12 +81,6 @@ class ThreadView(LoginRequiredMixin, FormMixin, DetailView):
 
 
     def form_valid(self, form):
-        """
-        This method sets the thread user and message from the form data and creates the chat object
-
-        :param form:
-        :return:
-        """
 
         thread = self.get_object()
 

@@ -1,6 +1,9 @@
 from django import forms
 
 
+
+
+
 class ComposeForm(forms.Form):
 
     message = forms.CharField(
@@ -10,4 +13,5 @@ class ComposeForm(forms.Form):
                 attrs={"class": "form-control"}
 
                 )
+
             )

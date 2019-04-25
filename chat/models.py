@@ -4,20 +4,8 @@ from django.db import models
 from django.db.models import Q
 
 class ThreadManager(models.Manager):
-    """
-    This class is responsible for managing the threads that are created
-    and implements lookups of those threads
-    """
 
     def by_user(self, user):
-        """
-        Not sure what this method does
-
-        :param user:
-        :return:
-        """
-
-        # TODO: Rename variables to be easier to understand
 
         qlookup = Q(first=user) | Q(second=user)
 
@@ -29,16 +17,7 @@ class ThreadManager(models.Manager):
 
 
 
-    def get_or_new(self, user, other_username):
-        """
-        Not sure what this method does
-
-        My assumption is that it gets a new thread for the users
-
-        :param user:
-        :param other_username:
-        :return:
-        """
+    def get_or_new(self, user, other_username): # get_or_create
 
         username = user.username
 
@@ -84,10 +63,6 @@ class ThreadManager(models.Manager):
 
 
 class Thread(models.Model):
-    """
-    This class initializes the thread and ForeignKey
-    of the first and second chat thread. It also holds the value for the timestamp
-    """
 
     first        = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='chat_thread_first')
 
@@ -102,33 +77,18 @@ class Thread(models.Model):
     objects      = ThreadManager()
 
 
-    # TODO What does this property decorator do?
 
     @property
 
     def room_group_name(self):
-        """
-        This method is a room_group_name getter method
-
-        :return:
-        """
 
         return f'chat_{self.id}'
 
 
 
     def broadcast(self, msg=None):
-        """
-        This method broadcasts the message of the user
-        to the room group name
-
-        :param msg:
-        :return:
-        """
 
         if msg is not None:
-
-            #TODO: I think this is defaulting to admin user, this method doesn't take in user how does that get overrode
 
             broadcast_msg_to_chat(msg, group_name=self.room_group_name, user='admin')
 
@@ -141,10 +101,6 @@ class Thread(models.Model):
 
 
 class ChatMessage(models.Model):
-    """
-    This class initializes the chat message, user and thread
-    of the first and second chat thread. It also holds the value for the timestamp
-    """
 
     thread      = models.ForeignKey(Thread, null=True, blank=True, on_delete=models.SET_NULL)
 

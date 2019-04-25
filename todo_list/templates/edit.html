@@ -12,8 +12,8 @@
 	<form class="form-inline my-2 my-lg-0" method ="POST">
 		{% csrf_token %}
 		<input class="form-control mr-sm-2" type="search" placeholder="{{ item.item }}" value="{{ item.item }}" aria-label="Search" name="item">
-		<input type="hidden" value="{{ item.completed }}" name="completed">
-		<input class="form-control mr-sm-2" type="hidden" placeholder="{{ item.belongs }}" value="{{ item.belongs }}"  name="belongs">
+		<input  value="{{ item.completed }}" name="completed">
+		<input class="form-control mr-sm-2"  placeholder="{{ item.belongs }}" value="{{ item.belongs }}"  name="belongs">
 
 		
 

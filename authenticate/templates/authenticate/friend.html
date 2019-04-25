@@ -1,40 +1,51 @@
 {% extends 'authenticate/base.html' %}
 {% block content %}
-<h2 class="text-center"> User List </h2>
-
-
-{% for user in Users %}
-	<h3>
-
-		{{ user.username }} 
-
-		{% if not user in friends %}
-
-
-		<a href="{% url 'change_friends' operation='add' pk=user.pk %}"><button type="button" class="btn btn-secondary">Add Friend</button></a>
-
-		{% endif %}
-
-
-	</h3>
-
-{% endfor %}
-
-<h2 class="text-center"> Friend List </h2>
-
-
-{% for friend in friends %}
-	<h3>
-
-		{{ friend.username }} 
-
-		<a href="{% url 'change_friends' operation='remove' pk=friend.pk %}"><button type="button" class="btn btn-secondary">Remove Friend</button></a>
-		<a href="{% url 'start_chat'  username=friend.username %}"><button type="button" class="btn btn-secondary">Start Conversation</button></a>
-
-	</h3>
-
-{% endfor %}
-
+<div class="row" >
+	<div class="col-lg-6" style="background-color: rgb(186, 209, 252);margin-top: 20px;margin-left:10px;">
+		<h3 class="subhead"> Friend List</h3>
+		<table class="textcontent"
+		style="width:100%">
+		<tr>
+			<th>member name</th>
+			
+		</tr>
+		{% for friend in friends %}
+		<tr>
+	
+			<td>{{ friend.username }}</td>
+			   <td><a href="{% url 'change_friends' operation='remove' pk=friend.pk %}">
+				   <button type="button" class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253)">Remove Friend</button>
+				</a></td> 
+			<td><a href="{% url 'start_chat'  username=friend.username %}">
+				<button type="button" class="btn btn-secondary" style="width:170px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253)">Start conversation</button>
+			</a></td>    
+		  </tr>
+	
+		{% endfor %}
+	</table>
+	<h3 class="subhead"> User List</h3>
+	<table class="textcontent"
+		style="width:100%">
+		<tr>
+			<th>member name</th>
+			
+		</tr>
+		{% for user in Users %}
+		<tr>
+			<td>{{ user.username }}</td>
+			<td>
+				{% if not user in friends %}
+					<a href="{% url 'change_friends' operation='add' pk=user.pk %}"><button type="button" class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253)">Add Friend</button></a>
+				{% endif %}
+	
+			</td>
+		</tr>
+	
+		{% endfor %}
+	</table>
+	</div>
+	
+</div>
 
 
 
