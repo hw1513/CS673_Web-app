@@ -48,7 +48,7 @@ def login_user(request):
 		
 	else:
 		Users = User.objects.all()
-		friend=Friend.objects.get(current_user=request.user)
+		# friend=Friend.objects.get(current_user=request.user)
 		friends=friend.users.all()
 		all_programs = list(Programs.objects.all())
 		return render(request, 'authenticate/home.html', {'Users' : Users , 'friends' : friends, 'all_programs' : all_programs })
