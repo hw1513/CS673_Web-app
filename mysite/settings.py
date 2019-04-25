@@ -25,7 +25,7 @@ SECRET_KEY = 'efh2#3=x_f9ucyxumcf@e!k&2425xn9it0q3-v(5)lydy!#ir$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["acadella.herokuapp.com"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -74,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-#WSGI_APPLICATION = 'mysite.wsgi.application'
+WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
 # Database
@@ -91,11 +91,11 @@ TEMPLATES = [
 #         'PORT': '3306',
 #     }
 # }
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql'
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql'
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -149,3 +149,8 @@ CHANNEL_LAYERS = {
         },
     },
 }
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
+del DATABASES['default']['OPTIONS']['sslmode']
