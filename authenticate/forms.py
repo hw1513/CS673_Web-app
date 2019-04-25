@@ -2,6 +2,10 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.contrib.auth.models import User
 
+from .common_logger import Logger
+
+LOGGER = Logger().get_logger(__name__)
+
 
 class EditProfileForm(UserChangeForm):
     """
@@ -20,6 +24,7 @@ class SignUpForm(UserCreationForm):
     This class leverages django forms and setups up the associated
     form controls
     """
+    LOGGER.info("Setting up SignUpForm")
     email = forms.EmailField(label="",
                              widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email Address'}))
     first_name = forms.CharField(label="", max_length=15,
@@ -41,10 +46,12 @@ class SignUpForm(UserCreationForm):
         :param kwargs:
         """
 
+        LOGGER.info("Initializing SignUpForm fields")
         # This is inheriting from the SignUpForm class
         super(SignUpForm, self).__init__(*args, **kwargs)
 
         # This is initializing fields for username
+        LOGGER.info("Initializing fields for username")
         self.fields['username'].widget.attrs['class'] = 'form-control'
         self.fields['username'].widget.attrs['placeholder'] = 'User Name'
         self.fields['username'].label = ''
@@ -52,6 +59,7 @@ class SignUpForm(UserCreationForm):
             'username'].help_text = '<span class="form-text text-muted"><small>Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</small></span>'
 
         # This is initializing fields for password
+        LOGGER.info("Initializing fields for password")
         self.fields['password1'].widget.attrs['class'] = 'form-control'
         self.fields['password1'].widget.attrs['placeholder'] = 'Password'
         self.fields['password1'].label = ''

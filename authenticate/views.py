@@ -7,6 +7,10 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .models import Friend
 
+from .common_logger import Logger
+
+LOGGER = Logger().get_logger(__name__)
+
 
 # TODO: Charlie can you explain the initial home functionality?
 
@@ -20,6 +24,7 @@ def issue(request):
     :param request:
     :return:
     """
+
     return render(request, 'authenticate/issue.html', {})
 
 
@@ -37,6 +42,7 @@ def friend(request):
 
     friend = Friend.objects.get(current_user=request.user)
     friends = friend.users.all()
+    LOGGER.info("Current user {} pulling all friends: {}".format(friend, friends))
     return render(request, 'authenticate/friend.html', {'Users': users, 'friends': friends})
 
 
@@ -79,10 +85,12 @@ def login_user(request):
         if user is not None:
             login(request, user)
             messages.success(request, ('You Have Been Logged In!'))
+            LOGGER.info("User successfully logged in")
             return redirect('home')
 
         else:
             messages.success(request, ('Error logging in - Please Try Again'))
+            LOGGER.error("User failed to log in")
             return redirect('home')
 
     else:
@@ -98,10 +106,14 @@ def logout_user(request):
     """
 
     # TODO: I believe we need to implement error handling here
-
-    logout(request)
-    messages.success(request, ('You Have Been Logged Out'))
-    return redirect('home')
+    try:
+        logout(request)
+        messages.success(request, ('You Have Been Logged Out'))
+        LOGGER.info("User logged out successfully!")
+        return redirect('home')
+    except Exception as e:
+        LOGGER.error("Exception while logging out: ".format(e))
+        raise e
 
 
 def register_user(request):
@@ -112,8 +124,6 @@ def register_user(request):
     :return:
     """
 
-    # TODO: We need to implement error logging here
-
     if request.method == 'POST':
         form = SignUpForm(request.POST)
         if form.is_valid():
@@ -123,8 +133,10 @@ def register_user(request):
             user = authenticate(username=username, password=password)
             login(request, user)
             messages.success(request, ('You Have Registered'))
+            LOGGER.info("Successful registration occurred!")
             return redirect('home')
     else:
+        LOGGER.error("Failure during registration occurred!")
         form = SignUpForm()
 
     context = {'form': form}
@@ -147,9 +159,11 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
             messages.success(request, ('You Have Edited Profile'))
+            LOGGER.info("Successfully edited profile!")
             return redirect('home')
     else:
         form = EditProfileForm(instance=request.user)
+        LOGGER.error("Failure during edit profile!")
 
     context = {'form': form}
     return render(request, 'authenticate/edit_profile.html', context)
@@ -163,16 +177,16 @@ def change_password(request):
     :return:
     """
 
-    # TODO: Logging required
-
     if request.method == 'POST':
         form = PasswordChangeForm(data=request.POST, user=request.user)
         if form.is_valid():
             form.save()
             messages.success(request, ('You Have Edited Profile'))
+            LOGGER.info("Successfully changed password!")
             return redirect('home')
     else:
         form = PasswordChangeForm(user=request.user)
+        LOGGER.error("Failure during password change!")
 
     context = {'form': form}
     return render(request, 'authenticate/change_password.html', context)

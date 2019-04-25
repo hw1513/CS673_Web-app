@@ -4,6 +4,10 @@ from channels.consumer import AsyncConsumer
 from channels.db import database_sync_to_async
 from .models import Thread, ChatMessage
 
+from .common_logger import Logger
+
+LOGGER = Logger().get_logger(__name__)
+
 class ChatConsumer(AsyncConsumer):
     async def websocket_connect(self, event):
         """
@@ -16,6 +20,7 @@ class ChatConsumer(AsyncConsumer):
         other_user = self.scope['url_route']['kwargs']['username']
         me = self.scope['user']
         #print(other_user, me)
+        LOGGER.debug("Other user {} current user {}".format(other_user, me))
         thread_obj = await self.get_thread(me, other_user)
         self.thread_obj= thread_obj
         chat_room = f"thread_{thread_obj.id}"
@@ -44,6 +49,7 @@ class ChatConsumer(AsyncConsumer):
         # TODO: Change this to using a logger
 
         print('receive', event)
+        LOGGER.debug("Receive event: {}".format(event))
         front_text = event.get('text', None)
         if front_text is not None:
             loaded_dict_data = json.loads(front_text)
@@ -53,8 +59,7 @@ class ChatConsumer(AsyncConsumer):
             if user.is_authenticated:
                 username=user.username
 
-            # TODO: change this to logger
-            #print(msg)
+            LOGGER.debug(msg)
 
             # Builds the response
             myResponse={
@@ -80,6 +85,7 @@ class ChatConsumer(AsyncConsumer):
         :return:
         """
         print('message', event)
+        LOGGER.info("Message: ".format(event))
         await self.send({
                 "type" : "websocket.send",
                 "text" : event['text']
@@ -95,6 +101,7 @@ class ChatConsumer(AsyncConsumer):
 
         #TODO: This may need to be converted to logger
         print('disconnected', event)
+        LOGGER.info("Disconnected: ".format(event))
 
     @database_sync_to_async
     def get_thread(self, user, other_username):
