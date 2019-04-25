@@ -25,7 +25,7 @@ SECRET_KEY = 'efh2#3=x_f9ucyxumcf@e!k&2425xn9it0q3-v(5)lydy!#ir$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["acadella.herokuapp.com"]
 
 
 # Application definition
