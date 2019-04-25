@@ -93,10 +93,7 @@ TEMPLATES = [
 # }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'CONFIG': {
-            "hosts": [os.environ.get('DATABASE_URL')]
-        }
+        'ENGINE': 'django.db.backends.mysql'
     }
 }
 
