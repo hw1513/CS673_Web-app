@@ -66,7 +66,6 @@ def addprogram(request):
 		form = ProgramForm(instance=request.user)
 
 	context = {'form': form}
-
 	return render(request, 'programs/addprogram.html', context)
 	
 def delete_program(request,program_name):
@@ -76,4 +75,3 @@ def delete_program(request,program_name):
     all_programs = list(Programs.objects.all())
     messages.success(request, ('You Have Deleted Program'))
     return render(request, 'programs/programs.html', {'all_programs' : all_programs })
-
