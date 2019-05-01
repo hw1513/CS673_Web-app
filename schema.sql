@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.15, for Win64 (x86_64)
 --
--- Host: localhost    Database: cs6731
+-- Host: localhost    Database: acadella
 -- ------------------------------------------------------
 -- Server version	8.0.15
 
@@ -116,7 +116,7 @@ CREATE TABLE `auth_user` (
   `date_joined` datetime(6) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,7 +125,6 @@ CREATE TABLE `auth_user` (
 
 LOCK TABLES `auth_user` WRITE;
 /*!40000 ALTER TABLE `auth_user` DISABLE KEYS */;
-INSERT INTO `auth_user` VALUES (1,'pbkdf2_sha256$120000$L84L3cVUGjjC$acs1TYUHLcm+RMbVj9nerXLBQsALyGf0bKcdMI6App4=','2019-04-30 21:37:09.516526',0,'zifu','qiren','sun','sunqrein@bu.edu',0,1,'2019-04-30 21:37:09.048479');
 /*!40000 ALTER TABLE `auth_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -319,7 +318,7 @@ CREATE TABLE `django_migrations` (
 
 LOCK TABLES `django_migrations` WRITE;
 /*!40000 ALTER TABLE `django_migrations` DISABLE KEYS */;
-INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2019-04-30 21:36:17.981163'),(2,'auth','0001_initial','2019-04-30 21:36:19.951101'),(3,'admin','0001_initial','2019-04-30 21:36:20.451154'),(4,'admin','0002_logentry_remove_auto_add','2019-04-30 21:36:20.482336'),(5,'admin','0003_logentry_add_action_flag_choices','2019-04-30 21:36:20.513587'),(6,'contenttypes','0002_remove_content_type_name','2019-04-30 21:36:20.842925'),(7,'auth','0002_alter_permission_name_max_length','2019-04-30 21:36:21.030442'),(8,'auth','0003_alter_user_email_max_length','2019-04-30 21:36:21.139756'),(9,'auth','0004_alter_user_username_opts','2019-04-30 21:36:21.155348'),(10,'auth','0005_alter_user_last_login_null','2019-04-30 21:36:21.342901'),(11,'auth','0006_require_contenttypes_0002','2019-04-30 21:36:21.358496'),(12,'auth','0007_alter_validators_add_error_messages','2019-04-30 21:36:21.374122'),(13,'auth','0008_alter_user_username_max_length','2019-04-30 21:36:21.639816'),(14,'auth','0009_alter_user_last_name_max_length','2019-04-30 21:36:21.842144'),(15,'authenticate','0001_initial','2019-04-30 21:36:22.607889'),(16,'programs','0001_initial','2019-04-30 21:36:23.218084'),(17,'issue1','0001_initial','2019-04-30 21:36:23.686977'),(18,'sessions','0001_initial','2019-04-30 21:36:23.856359'),(19,'todo_list','0001_initial','2019-04-30 21:36:24.372011');
+INSERT INTO `django_migrations` VALUES (1,'contenttypes','0001_initial','2019-05-01 22:12:40.287577'),(2,'auth','0001_initial','2019-05-01 22:12:42.345267'),(3,'admin','0001_initial','2019-05-01 22:12:42.831526'),(4,'admin','0002_logentry_remove_auto_add','2019-05-01 22:12:42.847191'),(5,'admin','0003_logentry_add_action_flag_choices','2019-05-01 22:12:42.878458'),(6,'contenttypes','0002_remove_content_type_name','2019-05-01 22:12:43.210127'),(7,'auth','0002_alter_permission_name_max_length','2019-05-01 22:12:43.428952'),(8,'auth','0003_alter_user_email_max_length','2019-05-01 22:12:43.487762'),(9,'auth','0004_alter_user_username_opts','2019-05-01 22:12:43.503357'),(10,'auth','0005_alter_user_last_login_null','2019-05-01 22:12:43.675290'),(11,'auth','0006_require_contenttypes_0002','2019-05-01 22:12:43.675290'),(12,'auth','0007_alter_validators_add_error_messages','2019-05-01 22:12:43.722139'),(13,'auth','0008_alter_user_username_max_length','2019-05-01 22:12:43.940923'),(14,'auth','0009_alter_user_last_name_max_length','2019-05-01 22:12:44.178499'),(15,'authenticate','0001_initial','2019-05-01 22:12:45.033851'),(16,'programs','0001_initial','2019-05-01 22:12:45.605952'),(17,'issue1','0001_initial','2019-05-01 22:12:46.134969'),(18,'sessions','0001_initial','2019-05-01 22:12:46.259931'),(19,'todo_list','0001_initial','2019-05-01 22:12:46.811677');
 /*!40000 ALTER TABLE `django_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -345,7 +344,6 @@ CREATE TABLE `django_session` (
 
 LOCK TABLES `django_session` WRITE;
 /*!40000 ALTER TABLE `django_session` DISABLE KEYS */;
-INSERT INTO `django_session` VALUES ('9uz6wu4wqw2yrpyk42ue05lahztcgt3y','OGYzMTE4MWM5ZDdkODA0NzI1YTM1MWZjYmQ5Njc1OTI3MmU2NzRjMTp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiJlNDQyN2U3ZThjYmQzNmMyMmNmMzRlMmY3YzY1Zjk0ZDdiZWM0NjNjIn0=','2019-05-14 21:37:09.524478');
 /*!40000 ALTER TABLE `django_session` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -402,7 +400,6 @@ CREATE TABLE `programs_programs` (
 
 LOCK TABLES `programs_programs` WRITE;
 /*!40000 ALTER TABLE `programs_programs` DISABLE KEYS */;
-INSERT INTO `programs_programs` VALUES ('cs673','2019-04-29','eqwe');
 /*!40000 ALTER TABLE `programs_programs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -422,7 +419,7 @@ CREATE TABLE `programs_programs_project_members` (
   KEY `programs_programs_pr_user_id_5037b60a_fk_auth_user` (`user_id`),
   CONSTRAINT `programs_programs_pr_programs_id_bc550ae2_fk_programs_` FOREIGN KEY (`programs_id`) REFERENCES `programs_programs` (`project_name`),
   CONSTRAINT `programs_programs_pr_user_id_5037b60a_fk_auth_user` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -431,7 +428,6 @@ CREATE TABLE `programs_programs_project_members` (
 
 LOCK TABLES `programs_programs_project_members` WRITE;
 /*!40000 ALTER TABLE `programs_programs_project_members` DISABLE KEYS */;
-INSERT INTO `programs_programs_project_members` VALUES (1,'cs673',1);
 /*!40000 ALTER TABLE `programs_programs_project_members` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -455,7 +451,7 @@ CREATE TABLE `todo_list_list` (
   KEY `todo_list_list_belongs_id_67b634ce_fk_programs_` (`belongs_id`),
   CONSTRAINT `todo_list_list_assigned_id_b764bf44_fk_auth_user_id` FOREIGN KEY (`assigned_id`) REFERENCES `auth_user` (`id`),
   CONSTRAINT `todo_list_list_belongs_id_67b634ce_fk_programs_` FOREIGN KEY (`belongs_id`) REFERENCES `programs_programs` (`project_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -464,7 +460,6 @@ CREATE TABLE `todo_list_list` (
 
 LOCK TABLES `todo_list_list` WRITE;
 /*!40000 ALTER TABLE `todo_list_list` DISABLE KEYS */;
-INSERT INTO `todo_list_list` VALUES (1,'qweqe',0,'eqwe12313','2019-04-29',1,'cs673');
 /*!40000 ALTER TABLE `todo_list_list` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -477,4 +472,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-01 18:19:18
+-- Dump completed on 2019-05-01 18:25:18
