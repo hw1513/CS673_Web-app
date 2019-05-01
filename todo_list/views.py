@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from .models import List
-from .forms import ListForm
+from .forms import ListForm,EditIssue
 from django.contrib import messages
 
 
@@ -24,8 +24,14 @@ def todo_home(request):
 
 		return render(request, 'todo_home.html', {'all_items' : all_items , 'form' : form })
 
+def detail(request, list_id):
+  item=get_object_or_404(List, pk=list_id)
+  #form = EditIssue(instance=item)
+  return render(request, 'idetail.html', {'item' : item})
+    
+    
 
-def delete(request, list_id):
+def delete1(request, list_id):
 	item = List.objects.get(pk=list_id)
 	item.delete()
 	messages.success(request, ('Item has been deleted!'))
@@ -34,23 +40,24 @@ def delete(request, list_id):
 
 
 
-def cross_off(request, list_id):
+def cross_off1(request, list_id):
 	item = List.objects.get(pk=list_id)
 	item.completed = True
 	item.save()
 	return redirect('todo_home')
 
-def uncross(request, list_id):
+def uncross1(request, list_id):
 	item = List.objects.get(pk=list_id)
 	item.completed = False
 	item.save()
 	return redirect('todo_home')
 
+
 def edit(request, list_id):
 	if request.method == 'POST':
-		item=List.objects.get(pk=list_id)
+		item=List(pk=list_id)
 
-		form = ListForm(request.POST or None, instance=request.user)
+		form = EditIssue(request.POST or None, instance=item)
 
 		if form.is_valid():
 			form.save()
@@ -61,16 +68,14 @@ def edit(request, list_id):
 			return redirect('todo_home')
 
 	else:
-
-		item = List.objects.get(pk=list_id)
-
-		return render(request, 'edit.html', {'item' : item})
-
+		item=List(pk=list_id)
+		form = EditIssue(instance=item)
+		return render(request, 'edit.html', {'form':form})
 
 
 
 
-def addnew(request):
+def addnew_item(request):
 	if request.method == 'POST':
 		form = ListForm(request.POST)
 		if form.is_valid():

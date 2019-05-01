@@ -15,26 +15,7 @@ def program(request):
 		
 
 		return render(request, 'programs/programs.html', {'all_programs' : all_programs })
-"""
-def todo_home(request):
 
-	if request.method == 'POST':
-
-		form = ListForm(request.POST or None)
-
-		if form.is_valid():
-			form.save()
-			all_items=List.objects.all()
-			messages.success(request, ('Item has been added to list!'))
-			return render(request, 'todo_home.html', {'all_items' : all_items , 'form' : form})
-
-	else:
-
-		all_items = List.objects.all
-		form = ListForm()
-
-		return render(request, 'todo_home.html', {'all_items' : all_items , 'form' : form })
-"""
 
 def add_member(request, program_name):
 	program = get_object_or_404(Programs, project_name=program_name)
