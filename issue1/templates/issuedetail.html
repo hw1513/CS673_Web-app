@@ -1,0 +1,20 @@
+{% extends 'authenticate/base.html' %}
+{% block content %}
+
+  <ul class="list-group">
+    <li class="list-group-item"> Item Name :  {{item.item}}</li>
+    <li class="list-group-item"> Project   :  {{item.issuebelongs}}</li>    
+    <li class="list-group-item"> Start Date   :  {{item.start_date}}</li>
+    <li class="list-group-item"> Description  :   {{item.description}}  </li>
+    <li class="list-group-item"> Members      :  {{item.assigned}} </li>
+    {% for member in members %}
+        {{member}}
+
+    {% endfor %}
+    </li>
+  </ul>
+
+
+{% endblock %}
+
+

@@ -8,6 +8,6 @@ urlpatterns = [
 	path('uncross/<list_id>', views.uncross, name='uncross'),
 	path('edit/<list_id>', views.edit, name='edit'),
 	path('addnew/', views.addnew, name='addnew'), 
-
+	path('detail/<list_id>', views.detail, name='issuedetail'),
 ]
     

@@ -26,17 +26,22 @@
 		{% for things in all_items %}
 			{% if things.completed %}
 				<tr>
-					<td class = "striker"> <a href="{% url 'edit' things.id %}">{{ things.item }}</a></td>
+					<td class = "striker">  <a href="{% url 'issuedetail' things.id %}">{{ things.item }}</a></td>
+					<td class = "striker"> <a>{{ things.start_date }}</a></td>	
 					<td class = "striker"> <a>{{ things.issuebelongs }}</a></td>
 					<td> <center> <a href="{% url 'uncross' things.id %}"> Closed </a></center></td>
 					<td> <center> <a href="{% url 'delete' things.id %}"> Delete </a> </center></td>
+					<td> <center> <a href="{% url 'edit' things.id %}"> Edit </a> </center></td>
 				</tr>
 			{% else %}
 				<tr>
-					<td> <a href="{% url 'edit' things.id %}">{{ things.item }}</a> </td>
+					<td class = "striker">  <a href="{% url 'issuedetail' things.id %}">{{ things.item }}</a></td>
+					<td class = "striker"> <a>{{ things.start_date }}</a></td>	
 					<td class = "striker"> <a>{{ things.issuebelongs }}</a></td>
 					<td> <center> <a href="{% url 'cross_off' things.id %}"> Open </a>  </center></td>
+
 					<td> <center> <a href="{% url 'delete' things.id %}"> Delete </a> </center></td>
+					<td> <center> <a href="{% url 'edit' things.id %}"> Edit </a> </center></td>
 				</tr>
 			{% endif %}
 

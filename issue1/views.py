@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from .models import iList
-from .forms import ListForm
+from .forms import ListForm, EditIssue
 from django.contrib import messages
 
 
@@ -23,6 +23,13 @@ def issue_home(request):
 		form = ListForm()
 
 		return render(request, 'issue_home.html', {'all_items' : all_items , 'form' : form })
+
+def detail(request, list_id):
+  item=get_object_or_404(iList, pk=list_id)
+  #form = EditIssue(instance=item)
+  return render(request, 'issuedetail.html', {'item' : item})
+    
+
 
 
 def delete(request, list_id):
@@ -48,9 +55,9 @@ def uncross(request, list_id):
 
 def edit(request, list_id):
 	if request.method == 'POST':
-		item=iList.objects.get(pk=list_id)
+		item=iList(pk=list_id)
 
-		form = ListForm(request.POST or None, instance=request.user)
+		form = EditIssue(request.POST or None, instance=item)
 
 		if form.is_valid():
 			form.save()
@@ -61,10 +68,9 @@ def edit(request, list_id):
 			return redirect('issue_home')
 
 	else:
-
-		item = iList.objects.get(pk=list_id)
-
-		return render(request, 'edit_issue.html', {'item' : item})
+		item=iList(pk=list_id)
+		form = EditIssue(instance=item)
+		return render(request, 'edit_issue.html', {'form':form})
 
 
 
