@@ -3,6 +3,10 @@ import os
 import sys
 
 if __name__ == '__main__':
+    """
+    This function initializes the Django application with the settings
+    """
+
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mysite.settings')
     try:
         from django.core.management import execute_from_command_line

@@ -80,16 +80,17 @@ TEMPLATES = [
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test',
-        'USER': 'root',
-        'PASSWORD': '4447474wim',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+
+#         'NAME': 'test',
+#         'USER': 'root',
+
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -138,8 +139,12 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            #"hosts":[os.environ.get('REDIS_URL', 'redis://localhost:6379')],
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts":[os.environ.get('REDIS_URL')],
+            # "hosts": [('127.0.0.1', 6379)],
         },
     },
 }
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
