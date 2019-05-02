@@ -2,7 +2,7 @@
 {% block content %}
 <h2 class="text-center"> Register </h2>
 
-<div class="col-md-6 offset-md-3">
+<div class="col-md-2 offset-md-5">
 
 	<form method="POST" action="{% url 'addnew_item' %}">
 		{% csrf_token %}
@@ -26,9 +26,9 @@
 		{% endif %}
 
 			{{ form.as_ul }}
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
 
-
-		<input type="submit" value="Add" class="btn btn-secondary">
+		<input type="submit" value="Add" class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
 	</form>
 
 </div>
