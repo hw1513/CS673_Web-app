@@ -1,7 +1,7 @@
 {% extends 'authenticate/base.html' %}
 {% block content %}
 <h2 class="text-center"> Edit Profile </h2>
-
+<div class="col-lg-2 offset-md-5">
 
 <form method="POST" action="{% url 'edit_profile' %}">
 	{% csrf_token %}
@@ -30,11 +30,11 @@
 		
 
     <p><small><a href="{% url 'change_password' %}">Click Here</a> To Change Your Password</small></p>
-    <input type="submit" value="Edit Profile" class="btn btn-secondary">
+    <input type="submit" value="Edit Profile" class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
 
 
 	
 </form>
-
+</div>
 
 {% endblock %}

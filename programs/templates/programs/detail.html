@@ -1,23 +1,85 @@
 {% extends 'authenticate/base.html' %}
 {% block content %}
 
-<ul class="list-group">
-  <li class="list-group-item"> Project Name :  {{program}}</li>
-  <li class="list-group-item"> Start Date   :  {{program.start_date}}</li>
-  <li class="list-group-item"> Description  :  {{program.project_description}}</li>
-  <li class="list-group-item"> Members      :
+
+<div class="container-fluid">
+<div class="row">
+  <div class="col-md-4">
+    
+ Project Name :  {{program}}</br></br>
+ Start Date   :  {{program.start_date}}</br></br>
+Description  :  {{program.project_description}}</br></br>
+Members      :
   {% for member in members %}
   	  {{member}}
 
   {% endfor %}
-  </li>
-</ul>
-
-  <a href="{% url 'delete_program' program.project_name %}">
-                <button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
-                    <b> Delete Program</b>
-                </button>   
+</br></br>
+<a href="{% url 'delete_program' program.project_name %}">
+    <button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
+        <b> Delete Program</b>
+    </button>   
+</a>
+<br/> <br/>
+  </div>
+  <div class="col-md-8" style="">
+      
+    <h1
+    id="Pname" class="subhead"
+    style="font-family: 'Staatliches', cursive; margin:5px 20px">
+    - ToDo List
+</h1>
+            {% if all_items %}
+            <table class="textcontent"
+				style="width:100%;table-layout: fixed; word-wrap: break-word;">
+        
+            {% for things in all_items %}
+            <tr>
+                <th>issue name</th>
+                <th>start date</th>
+                <th>user</th>
+                <th>status</th>
+                <th></th>
+                <th></th>
+              </tr>
+              
+              {% if things.belongs == program %}
+                {% if things.completed %}
+                  <tr>
+                  <td class = "striker"> <a href="{% url 'idetail' things.id %}">{{ things.item }}</a></td>
+                  <td class = "striker"> <a>{{ things.start_date }}</a></td>					
+                  <td class = "striker"> <a>{{ things.belongs }}</a></td>
+                  <td class = "striker"> <a>{{ things.assigned }}</a></td>
+                  <td> <center> <a href="{% url 'uncross1' things.id %}"> Compeleted </a></center></td>
+                  <td> <center> <a href="{% url 'delete1' things.id %}"> Delete </a> </center></td>
+                  <td> <center> <a href="{% url 'iedit' things.id %}"> Edit </a> </center></td>
+                  </tr>
+                {% else %}
+                <tr>
+                  <td> <a href="{% url 'idetail' things.id %}">{{ things.item }}</a> </td>
+                  <td class = "striker"> <a>{{ things.start_date }}</a></td>		
+                  <td class = "striker"> <a>{{ things.belongs }}</a></td>
+                  <td class = "striker"> <a>{{ things.assigned }}</a></td>
+                  <td> <center> <a href="{% url 'cross_off1' things.id %}"> Work in Progress </a>  </center></td>
+                  <td> <center> <a href="{% url 'delete1' things.id %}"> Delete </a> </center></td>
+                  <td> <center> <a href="{% url 'iedit' things.id %}"> Edit </a> </center></td>
+                </tr>
+                {% endif %}
+              {%endif%}
+            {% endfor %}
+          </table>
+          {% endif %}
+          <br/>
+          <center>
+          <a href="{% url 'addnew_item' %}">
+              <button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
+                <b> New Item</b>
+              </button>	
             </a>
+          </center>
+        </div>
+        </div>
+          </div>
 
 {% endblock %}
 

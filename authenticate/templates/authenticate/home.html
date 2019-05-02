@@ -1,33 +1,52 @@
 {% extends 'authenticate/base.html' %}
 {% block content %}
 
-<h1> This is the home page </h1>
-
 {% if user.is_authenticated %}
 	<p>Name:{{ user.first_name }} {{ user.last_name }}</p>
 	<p>Username:{{ user.username }}</p>
 	<p>Email:{{ user.email }}</p>
-	<a href="{% url 'programhome' %}">
+	
+<a href="{% url 'addprogram' %}">
+							<button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
+									<b> New Program</b>
+							</button>   
+					</a>
+<a href="{% url 'issue_home' %}">
+						<button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
+							<b>Issues</b>
+						</button>
+					</a>
+<a href="{% url 'friend' %}">
 		<button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
-			<b>program</b>
-		</button>
-	</a>
-	<a href="{% url 'todo_home' %}">
-		<button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
-			<b>To-Do List</b>
-		</button>
-	</a>
-	<a href="{% url 'issue_home' %}">
-		<button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
-			<b>Issue</b>
-		</button>
-	</a>
-	<a href="{% url 'friend' %}">
-		<button class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);">
-			<b>Friend</b>
-		</button>
-	</a>
+								<b>Friend</b>
+							</button>
+						</a>
+	<div class="row" >
+		<div class="col-lg-6" style=" margin-left:10px;margin-top:10px">
+				<h3
+				style="color:rgb(41, 41, 95) ;border-bottom: 3px solid rgb(41, 41, 95); margin-left: 20px; margin-top: 20px;background-color: rgb(120, 151, 253)">
+			  Programs
+			</h3>
+				{% if all_programs %}
+				<table style="width:100%; margin-left:10px; margin-top:20px;color:rgb(41, 41, 95);">
+			
+						{% for program in all_programs %}
+								
+										<tr>
+												<td> <a href="{% url 'detail' program.project_name %}">{{ program.project_name }}</a></td>
+												<td class = ""> <a>{{ program.start_date }}</a></td>
+												<td> <center>  {{program.project_description}}  </center></td>
+												
+										</tr>
+								
+			
+						{% endfor %}
+				</table>
+				{% endif %}
+		</div>
 		
+		
+	</div>
 
 {% else %}
 	<div style="float:right; width: 503px; border-left: 3px rgb(41, 41, 95) solid">

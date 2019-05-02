@@ -2,12 +2,14 @@ from django.shortcuts import render,HttpResponse, get_object_or_404, redirect
 from .models import Programs
 from .forms import ProgramForm
 from django.contrib import messages
+from todo_list.models import List
 
 def detail(request, program_name):
 	program = get_object_or_404(Programs, project_name=program_name)
 	members = list(program.project_members.all())
-	return render(request, 'programs/detail.html', {'program':program, 'members':members})
-
+	all_items = List.objects.all
+	return render(request, 'programs/detail.html', {'program':program, 'members':members, 'all_items':all_items})
+ 
 def program(request):
 	
 

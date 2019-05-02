@@ -1,10 +1,10 @@
 {% extends 'authenticate/base.html' %}
 {% block content %}
-<h2 class="text-center"> Register </h2>
+<h2 class="text-center"> Add new program </h2>
 
-<div class="col-md-6 offset-md-3">
+<div class="container" style="text-align: center">
 
-	<form method="POST" action="{% url 'addprogram' %}">
+	<form method="POST" action="{% url 'addprogram' %}" style="display:block; margin-left:200px;margin-right:400px">
 		{% csrf_token %}
 
 		{% if form.errors %}
@@ -27,8 +27,8 @@
 
 			{{ form.as_ul }}
 
-
-		<input type="submit" value="Add" class="btn btn-secondary">
+		  <br/><br/><br/><br/><br/><br/><br/><br/>
+		<input type="submit" value="Add" class="btn btn-secondary" style="width:150px; background-color: rgb(41, 41, 95); color:rgb(157, 196, 253);margin-left: 200px">
 	</form>
 
 </div>

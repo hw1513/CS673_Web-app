@@ -6,6 +6,7 @@ from .forms import SignUpForm, EditProfileForm
 from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .models import Friend
+from programs.models import Programs
 
 #def home(request):
 	#return render(request, 'authenticate/home.html', {})
@@ -46,7 +47,9 @@ def login_user(request):
 
 		
 	else:
-		return render(request, 'authenticate/home.html', {})
+		all_programs = list(Programs.objects.all())
+		
+		return render(request, 'authenticate/home.html', {'all_programs' : all_programs,})
 
 
 

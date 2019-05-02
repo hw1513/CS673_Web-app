@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.contrib.auth.models import User
+from .models import Friend
 
 class EditProfileForm(UserChangeForm):
 	password = forms.CharField( label="", widget=forms.TextInput(attrs={'type':'hidden'}))
@@ -37,4 +38,7 @@ class SignUpForm(UserCreationForm):
 		self.fields['password2'].label = ''
 		self.fields['password2'].help_text = '<span class="form-text text-muted"><small>Enter the same password as before, for verification.</small></span>'
 
-
+class friend(forms.ModelForm):
+	class Meta:
+		model = Friend
+		fields=["current_user"]
