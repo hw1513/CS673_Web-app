@@ -80,17 +80,6 @@ TEMPLATES = [
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-
-#         'NAME': 'test',
-#         'USER': 'root',
-
-#         'HOST': '127.0.0.1',
-#         'PORT': '3306',
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -148,3 +137,4 @@ CHANNEL_LAYERS = {
 # Configure Django App for Heroku.
 import django_heroku
 django_heroku.settings(locals())
+del DATABASES['default']['OPTIONS']['sslmode']
