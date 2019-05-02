@@ -25,7 +25,7 @@ def program(request):
 	:param request:
 	:return:
 	"""
-
+    
     all_programs = list(Programs.objects.all())
 
     return render(request, 'programs/programs.html', {'all_programs': all_programs})
