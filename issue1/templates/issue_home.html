@@ -27,15 +27,16 @@
 			{% if all_items %}
             <table class="textcontent"
             style="width:100%; table-layout: fixed; word-wrap: break-word;">
-			{% for things in all_items %}
 			<tr>
-					<th>issue name</th>
-					<th>start date</th>
-					<th>belongs</th>
-					<th></th>
-					<th></th>
-					<th></th>
-				</tr>
+				<th>issue name</th>
+				<th>start date</th>
+				<th>belongs</th>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+			{% for things in all_items %}
+
 			{% if things.completed %}
 
 				<tr>

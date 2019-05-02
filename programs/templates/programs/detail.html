@@ -32,16 +32,17 @@ Members      :
             {% if all_items %}
             <table class="textcontent"
 				style="width:100%;table-layout: fixed; word-wrap: break-word;">
-        
+
+        <tr>
+          <th>issue name</th>
+          <th>start date</th>
+          <th>user</th>
+          <th>status</th>
+          <th></th>
+          <th></th>
+        </tr>
             {% for things in all_items %}
-            <tr>
-                <th>issue name</th>
-                <th>start date</th>
-                <th>user</th>
-                <th>status</th>
-                <th></th>
-                <th></th>
-              </tr>
+
               
               {% if things.belongs == program %}
                 {% if things.completed %}
