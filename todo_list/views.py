@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect,get_object_or_404
 from .models import List
 from .forms import ListForm,EditIssue
 from django.contrib import messages
-
+from .models import Programs
 
 # Create your views here.
 def todo_home(request):
@@ -35,8 +35,10 @@ def delete1(request, list_id):
 	item = List.objects.get(pk=list_id)
 	item.delete()
 	messages.success(request, ('Item has been deleted!'))
-	return redirect('todo_home')
-
+	program = get_object_or_404(Programs, project_name=item.belongs)
+	members = list(program.project_members.all())
+	all_items = List.objects.all
+	return render(request, 'programs/detail.html', {'program':program, 'members':members, 'all_items':all_items})
 
 
 
@@ -44,13 +46,21 @@ def cross_off1(request, list_id):
 	item = List.objects.get(pk=list_id)
 	item.completed = True
 	item.save()
-	return redirect('todo_home')
+	program = get_object_or_404(Programs, project_name=item.belongs)
+	members = list(program.project_members.all())
+	all_items = List.objects.all
+	return render(request, 'programs/detail.html', {'program':program, 'members':members, 'all_items':all_items})
+
 
 def uncross1(request, list_id):
 	item = List.objects.get(pk=list_id)
 	item.completed = False
 	item.save()
-	return redirect('todo_home')
+	program = get_object_or_404(Programs, project_name=item.belongs)
+	members = list(program.project_members.all())
+	all_items = List.objects.all
+	return render(request, 'programs/detail.html', {'program':program, 'members':members, 'all_items':all_items})
+
 
 
 def edit(request, list_id):
@@ -65,7 +75,11 @@ def edit(request, list_id):
 			
 			messages.success(request, ('Item has been edited!'))
 		
-			return redirect('todo_home')
+			program = get_object_or_404(Programs, project_name=item.belongs)
+			members = list(program.project_members.all())
+			all_items = List.objects.all
+			return render(request, 'programs/detail.html', {'program':program, 'members':members, 'all_items':all_items})
+
 
 	else:
 		item=List(pk=list_id)
@@ -81,7 +95,9 @@ def addnew_item(request):
 		if form.is_valid():
 			form.save()
 			messages.success(request, ('You Have Added New Item'))
-			return redirect('todo_home')
+			all_programs = list(Programs.objects.all())
+			return render(request, 'authenticate/home.html', {'all_programs' : all_programs,})
+
 	else:
 		form = ListForm(instance=request.user)
 
