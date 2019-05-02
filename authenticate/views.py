@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .models import Friend
 from programs.models import Programs
+from .forms import friend
 
 #def home(request):
 	#return render(request, 'authenticate/home.html', {})
@@ -15,10 +16,17 @@ def issue(request):
 	return render(request, 'authenticate/issue.html',{})
 
 def friend(request):
-	Users = User.objects.all()
-	friend=Friend.objects.get(current_user=request.user)
-	friends=friend.users.all()
-	return render(request, 'authenticate/friend.html', {'Users' : Users , 'friends' : friends})
+    Users = User.objects.all()
+    for user in Users:
+    #print(user)
+      form=Friend(id=user.id,current_user_id=user.id)
+    #print(form)
+    form.save()
+    friend=Friend.objects.get(current_user=request.user)
+    friends=friend.users.all()
+    #print(friends)
+    return render(request, 'authenticate/friend.html', {'Users' : Users ,'friends':friends})
+
 
 def change_friends(request, operation, pk):
 	new_friend = User.objects.get(pk=pk)
